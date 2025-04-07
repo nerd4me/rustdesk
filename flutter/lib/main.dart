@@ -167,6 +167,8 @@ void runMainApp(bool startService) async {
 void runMobileApp() async {
   await initEnv(kAppTypeMain);
   checkUpdate();
+  // Disable scam warning permanently
+  await bind.mainSetLocalOption(key: "show-scam-warning", value: "N");
   if (isAndroid) androidChannelInit();
   if (isAndroid) platformFFI.syncAndroidServiceAppDirConfigPath();
   draggablePositions.load();
